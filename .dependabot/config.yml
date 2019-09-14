@@ -1,0 +1,9 @@
+version: 1
+update_configs:
+  # Keep Dockerfiles up to date, batching pull requests weekly
+  - package_manager: "docker"
+    directory: "/7.2-apache"
+    update_schedule: "daily"
+  - package_manager: "docker"
+    directory: "/7.3-apache"
+    update_schedule: "daily"
