@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 versions=(7.2 7.3)
 
 for version in "${versions[@]}"; do
