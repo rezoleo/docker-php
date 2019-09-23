@@ -11,5 +11,5 @@ git config user.email "contact@rezoleo.fr"
 git config user.name "Rézoléo Bot"
 
 git commit -m "(actions) Updated Dockerfiles"
-git remote set-url --push origin "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}"
+git remote set-url --push origin "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}"
 git push origin HEAD:"${GITHUB_REF}"
