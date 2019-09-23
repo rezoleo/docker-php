@@ -1,7 +1,12 @@
 #!/bin/bash
 
-for version in 7.2 7.3; do
+versions=(7.2 7.3)
+
+for version in "${versions[@]}"; do
   VERSION=$version envsubst < Dockerfile.template > "${version}-apache/Dockerfile"
+  git add "${version}-apache/Dockerfile"
 done
 
-cat 7.2-apache/Dockerfile
+git commit -m "(actions) Updated Dockerfiles"
+git remote set-url --push origin "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}"
+git push
