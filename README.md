@@ -12,3 +12,4 @@ They both have the following extensions added:
   - gd
   - gettext
   - pdo_mysql
+  - zip
