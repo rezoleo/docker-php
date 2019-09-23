@@ -1,6 +1,8 @@
 name: Update Dockerfiles
 
-on: [push]
+on:
+  push:
+    branches:
 
 jobs:
   build:
