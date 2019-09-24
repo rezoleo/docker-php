@@ -24,7 +24,7 @@ for version in "${versions[@]}"; do
 done
 
 if [[ -n ${GITHUB_WORKFLOW:-} ]]; then
-  git config user.email "contact@rezoleo.fr"
+  git config user.email "55330048+svc-rezoleo@users.noreply.github.com"
   git config user.name "Rézoléo Bot"
 
   # Commit only if there are differences
