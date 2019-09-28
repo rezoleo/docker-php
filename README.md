@@ -1,7 +1,5 @@
 # docker-php
 
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=rezoleo/docker-php)](https://dependabot.com)
-
 A PHP + Apache docker image with useful extensions preinstalled
 
 The following versions of the image are available:
@@ -11,6 +9,8 @@ The following versions of the image are available:
 They all come in two flavors:
   - Apache `DocumentRoot` set to `/var/www/html/public` (eg. for Symfony/Laravel)
   - Apache `DocumentRoot` set to `/var/www/html` (for other cases)
+  
+Apache `mod_rewrite` has been activated.
 
 They all have the following extensions added:
   - gd
