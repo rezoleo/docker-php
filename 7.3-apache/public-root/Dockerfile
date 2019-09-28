@@ -6,6 +6,7 @@
 #############################################
 FROM php:7.3-apache
 
+
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
@@ -24,6 +25,12 @@ RUN apt-get update && apt-get install -y \
     && a2enmod rewrite
 
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
-    && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+    && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf \
+    && sed -i 's/80/8080/' /etc/apache2/sites-enabled/000-default.conf \
+    && sed -i 's/^Listen.*/Listen 8080/' /etc/apache2/ports.conf
+
+USER www-data
+
+EXPOSE 8080
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
