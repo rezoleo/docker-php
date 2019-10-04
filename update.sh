@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-versions=(7.2 7.3)
+versions=(5.6 7.2 7.3)
 declare -A roots
 roots=([standard-root]=/var/www/html [public-root]=/var/www/html/public)
 
