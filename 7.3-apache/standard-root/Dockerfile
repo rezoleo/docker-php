@@ -25,8 +25,9 @@ RUN apt-get update && apt-get install -y \
     && a2enmod rewrite
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
-    && sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 8M/' "$PHP_INI_DIR/php.ini" \
-    && sed -i 's/post_max_size = 2M/post_max_size = 8M/' "$PHP_INI_DIR/php.ini"
+    && cp "$PHP_INI_DIR/php.ini" "$PHP_INI_DIR/conf.d/php.ini" \
+    && sed -i 's/upload_max_filesize = 2M/upload_max_filesize = ${PHP_UPLOAD_MAX_FILESIZE}/' "$PHP_INI_DIR/conf.d/php.ini" \
+    && sed -i 's/post_max_size = 2M/post_max_size = ${PHP_POST_MAX_SIZE}/' "$PHP_INI_DIR/conf.d/php.ini"
 
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
     && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf \
@@ -37,4 +38,6 @@ USER www-data
 
 EXPOSE 8080
 
-ENV APACHE_DOCUMENT_ROOT /var/www/html
+ENV APACHE_DOCUMENT_ROOT=/var/www/html \
+    PHP_UPLOAD_MAX_FILESIZE=5M \
+    PHP_POST_MAX_SIZE=5M
