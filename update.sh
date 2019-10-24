@@ -2,9 +2,10 @@
 
 set -euo pipefail
 
-versions=(7.2 7.3)
+versions=(5.6 7.2 7.3)
 declare -A roots
 roots=([standard-root]=/var/www/html [public-root]=/var/www/html/public)
+default_max_upload=5M
 
 for version in "${versions[@]}"; do
   for root in "${!roots[@]}"; do
@@ -14,6 +15,7 @@ for version in "${versions[@]}"; do
     cat dockerfile-header > "$output_file"
     export VERSION=$version
     export APACHE_PUBLIC_FOLDER_CONFIGURATION=${roots[$root]}
+    export PHP_UPLOAD_MAX=$default_max_upload
     # Append the template
     # We substitute only already defined variables, see https://stackoverflow.com/a/54318029/3641865
     # for more information about the "env | sed" magic
