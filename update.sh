@@ -14,6 +14,10 @@ for version in "${versions[@]}"; do
       --build-arg "VERSION=${version}" \
       --build-arg "APACHE_PUBLIC_FOLDER=${roots[$root]}" \
       .
-    # docker push "rezoleo/php:${version}-apache-${root}"
+
+    if [[ $(git branch --show-current) == "master" ]]
+    then
+      docker push "rezoleo/php:${version}-apache-${root}"
+    fi
   done
 done

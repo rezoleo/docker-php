@@ -12,5 +12,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Log in to Docker Hub
+      if: github.ref == "refs/heads/master"
+      run: docker login --username svcrezoleo --password ${{ secrets.DOCKER_HUB_TOKEN }}
+
     - name: Build & push image
       run: ./update.sh
