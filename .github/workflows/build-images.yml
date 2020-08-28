@@ -3,6 +3,7 @@ name: Build & push Docker images
 on:
   push:
     branches:
+  pull_request:
   schedule:
     - cron: '14 4 * * 3' # Every Wednesday at 4:14
 
