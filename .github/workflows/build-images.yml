@@ -1,0 +1,20 @@
+name: Build & push Docker images
+
+on:
+  push:
+    branches:
+  schedule:
+    - cron: '14 4 * * 3' # Every Wednesday at 4:14
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Log in to Docker Hub
+      if: github.ref == "refs/heads/master"
+      run: docker login --username svcrezoleo --password ${{ secrets.DOCKER_HUB_TOKEN }}
+
+    - name: Build & push image
+      run: ./update.sh
