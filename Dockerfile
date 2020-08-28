@@ -1,5 +1,11 @@
+ARG VERSION
+
 FROM php:${VERSION}-apache
 
+ARG APACHE_PUBLIC_FOLDER
+ARG PHP_UPLOAD_MAX=5M
+
+LABEL maintainer="Rezoleo <contact@rezoleo.fr>"
 
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
@@ -32,6 +38,6 @@ USER www-data
 
 EXPOSE 8080
 
-ENV APACHE_DOCUMENT_ROOT=${APACHE_PUBLIC_FOLDER_CONFIGURATION} \
+ENV APACHE_DOCUMENT_ROOT=${APACHE_PUBLIC_FOLDER} \
     PHP_UPLOAD_MAX_FILESIZE=${PHP_UPLOAD_MAX} \
     PHP_POST_MAX_SIZE=${PHP_UPLOAD_MAX}
