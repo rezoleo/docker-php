@@ -7,10 +7,6 @@ The following versions of the image are available:
   - PHP 7.2
   - PHP 7.3
 
-They all come in two flavors:
-  - Apache `DocumentRoot` set to `/var/www/html/public` (eg. for Symfony/Laravel)
-  - Apache `DocumentRoot` set to `/var/www/html` (for other cases)
-
 Apache `mod_rewrite` has been activated.
 
 They all have the following extensions added:
@@ -19,3 +15,15 @@ They all have the following extensions added:
   - mysqli
   - pdo_mysql
   - zip
+  
+## Configuration :
+
+By default the Apache `DocumentRoot` is set to `/var/www/html`.
+  
+You can also use the `APACHE_DOCUMENT_ROOT` environment variable 
+to change it (eg. `/var/www/html/public` for Symfony/Laravel).
+
+By default the maximum upload size and maximum post size are set to 5 MB.
+
+You can use the `PHP_UPLOAD_MAX_FILESIZE` and `PHP_POST_MAX_SIZE` to change them.
+
