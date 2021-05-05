@@ -10,7 +10,6 @@ RUN apt-get update && apt-get install -y \
         libjpeg62-turbo-dev \
         libpng-dev \
         libzip-dev \
-        sendmail \
         unzip \
         zip \
     && rm -rf /var/lib/apt/lists/* \
