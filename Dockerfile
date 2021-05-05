@@ -5,13 +5,15 @@ FROM php:${VERSION}-apache
 LABEL maintainer="Rezoleo <contact@rezoleo.fr>"
 
 RUN apt-get update && apt-get install -y \
+        gettext \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libpng-dev \
         libzip-dev \
-        gettext \
+        sendmail \
         unzip \
         zip \
+    && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-configure zip --with-libzip \
     && docker-php-ext-install -j$(nproc) \
