@@ -4,27 +4,29 @@ FROM php:${VERSION}-apache
 
 LABEL maintainer="Rezoleo <contact@rezoleo.fr>"
 
-ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+# We will use the php installer from mlocati
+# https://github.com/mlocati/docker-php-extension-installer
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
-RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
-    install-php-extensions xsl && \
-    apt-get update && apt-get install -y \
-        gettext \
-        libfreetype6-dev \
-        libjpeg62-turbo-dev \
-        libpng-dev \
-        libzip-dev \
-        unzip \
-        zip \
+RUN apt-get update \
+     # Let's update the base layer for security fixes, see
+    # https://pythonspeed.com/articles/security-updates-in-docker/
+    && apt-get upgrade -y \
+    && apt-get install -y \
+      gettext \
+      unzip \
+      zip \
     && rm -rf /var/lib/apt/lists/* \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-configure zip --with-libzip \
-    && docker-php-ext-install -j$(nproc) \
+    && install-php-extensions \
       gd \
       gettext \
       mysqli \
       pdo_mysql \
+      xsl \
       zip \
+    # Yes the file is still in the previous layers, but at least it cannot be used
+    # to install new extensions from this point on
+    && rm /usr/local/bin/install-php-extensions \
     && a2enmod rewrite
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
