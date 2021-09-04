@@ -4,7 +4,11 @@ FROM php:${VERSION}-apache
 
 LABEL maintainer="Rezoleo <contact@rezoleo.fr>"
 
-RUN apt-get update && apt-get install -y \
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+
+RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
+    install-php-extensions xsl && \
+    apt-get update && apt-get install -y \
         gettext \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
