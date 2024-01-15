@@ -22,6 +22,7 @@ RUN apt-get update \
       gettext \
       mysqli \
       pdo_mysql \
+      sodium \
       xsl \
       zip \
     # Yes the file is still in the previous layers, but at least it cannot be used
