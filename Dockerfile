@@ -20,6 +20,8 @@ RUN apt-get update \
     && install-php-extensions \
       gd \
       gettext \
+      imap \
+      mailparse \
       mysqli \
       pdo_mysql \
       sodium \
