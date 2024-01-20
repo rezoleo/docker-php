@@ -16,6 +16,8 @@ Apache `mod_rewrite` has been activated.
 They all have the following extensions added:
   - gd
   - gettext
+  - imap
+  - mailparse
   - mysqli
   - pdo_mysql
   - xsl
