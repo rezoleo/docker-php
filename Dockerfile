@@ -21,6 +21,7 @@ RUN apt-get update \
       gd \
       gettext \
       imap \
+      intl \
       mailparse \
       mysqli \
       pdo_mysql \

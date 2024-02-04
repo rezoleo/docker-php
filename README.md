@@ -8,12 +8,17 @@ The following versions of the image are available:
   - PHP 7.3
   - PHP 7.4
   - PHP 8.0
+  - PHP 8.1
+  - PHP 8.2
 
 Apache `mod_rewrite` has been activated.
 
 They all have the following extensions added:
   - gd
   - gettext
+  - imap
+  - intl
+  - mailparse
   - mysqli
   - pdo_mysql
   - xsl
