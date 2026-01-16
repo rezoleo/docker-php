@@ -3,7 +3,6 @@
 A PHP + Apache docker image with useful extensions preinstalled
 
 The following versions of the image are available:
-  - PHP 7.2
   - PHP 7.3
   - PHP 7.4
   - PHP 8.0
