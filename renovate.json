@@ -20,15 +20,16 @@
     {
       "matchPackageNames": ["php"],
       "matchDatasources": ["docker"],
-      // Override helpers:pinGitHubActionDigests from config:best-practices since we explicitely
+      // Override docker:pinDigests from config:best-practices since we explicitely
       // want the latest PHP patch version and not a pinned Docker image
       "pinDigests": false,
       "prBodyNotes": [
-        "**Do NOT merge this PR as-is!**",
+        "# :warning: Do NOT merge this PR as-is! :warning:",
         "",
         "This PR is only a reminder that a new PHP version is available, however Renovate doesn't allow us to do everything we need to do.",
-        "You need to _add_ the new PHP version to the `versions` array in `update.sh` instead of replacing the last.",
-        "You also need to update the `README.md` to list supported versions."
+        "You need to:",
+        "  * **add** the new PHP version to the `versions` array in `update.sh` instead of replacing the last;",
+        "  * update the `README.md` to list supported versions."
       ]
     }
   ]
