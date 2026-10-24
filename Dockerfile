@@ -6,7 +6,7 @@ LABEL maintainer="Rezoleo <contact@rezoleo.fr>"
 
 # We will use the php installer from mlocati
 # https://github.com/mlocati/docker-php-extension-installer
-COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+COPY --from=mlocati/php-extension-installer@sha256:ac4b252c153a9f6de5578ff2c417790aba836bb49855543144606033eceda253 /usr/bin/install-php-extensions /usr/local/bin/
 
 RUN apt-get update \
      # Let's update the base layer for security fixes, see
